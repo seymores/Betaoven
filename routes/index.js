@@ -28,8 +28,11 @@ exports.upload = function(req, res) {
         fs.unlink(tmp_path, function() {
             if (err) throw err;
         });
-    
-        res.send("done, moved file to " + filepath);
+
+        var output = {"message": filepath};
+        res.writeHead(200, {"Content-type":"application/json"});
+        res.write( JSON.stringify(output) );
+        res.end();
     });
 
 };
