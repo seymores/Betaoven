@@ -6,16 +6,23 @@ var path = require('path')
     , formidable = require('formidable')
     , fs = require('fs');
 
+/**
+ * Read in HTML and keep in memory
+ */
+
+var index = fs.readFileSync(__dirname + "/../public/index.html")
+  , dashboard = fs.readFileSync(__dirname + '/../public/dashboard.html')
+  ;
+
+
 exports.index = function(req, res){
-  // res.render('index', { title: 'Express' })
-    res.sendfile( path.normalize( __dirname + "/../public/index.html") );
+    res.send(index, {'Content-Type': 'text/html'});
     console.log(" * index home request ");
 };
 
 exports.dashboard = function(req, res) {
-    var filepath = path.normalize( __dirname + '/../public/dashboard.html' );
-    res.sendfile( filepath );
-    console.log(" * Dashboard request, filepath = " + filepath);
+    res.send(dashboard, {'Content-Type': 'text/html'});
+    console.log(" * Dashboard request ");
 }; 
 
 exports.upload = function(req, res) {
