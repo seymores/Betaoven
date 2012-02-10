@@ -3,7 +3,6 @@
  * GET home page.
  */
 var path = require('path')
-    , formidable = require('formidable')
     , fs = require('fs');
 
 /**
