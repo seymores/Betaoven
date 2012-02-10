@@ -4,7 +4,6 @@
  */
 
 var express = require('express')
-  , path = require('path')
   , routes = require('./routes')
 
 var app = module.exports = express.createServer();
