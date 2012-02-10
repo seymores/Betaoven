@@ -10,5 +10,6 @@
   , "devDependencies": {
       "debug": ">= 0.5.0"
     , "mocha": "*"
+    , "should": "*"
   }
 }
