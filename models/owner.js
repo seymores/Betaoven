@@ -5,7 +5,16 @@ const db = require('../db')
 
 
 var Owner = new Schema({
-    
+    email: {
+      type: String
+    , required: true
+    , trim: true
+    }
+  , display_name: {
+      type: String
+    , required: true
+    , trim: true
+  }
 });
 
 
