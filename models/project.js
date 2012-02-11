@@ -6,9 +6,9 @@ const db = require('../db')
 
 var Project = new Schema({
     name: {
-        type: String
-      , required: true
-      , trim: true
+      type: String
+    , required: true
+    , trim: true
   }
   , description: {
       type: String
