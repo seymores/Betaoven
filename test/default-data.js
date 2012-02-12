@@ -1,6 +1,7 @@
 const User = require('../models/user')
     , Project = require('../models/project')
     , Invite = require('../models/invite')
+    , Build = require('../models/build')
     ;
 
 var user
@@ -33,6 +34,25 @@ var user
         , project: new Project(project())
         , from: new User(user())
         , details: 'Welcome to betaoven!'
+      }
+    }
+
+  , build
+    = exports.build
+    = function(){
+      return {
+          version_code: '0.0.1'
+        , version_label: 'dev'
+        , path: 'path/to/build/file'
+      }
+    }
+    
+  , vote
+    = exports.vote
+    = function(){
+      return {
+          by: new User(user())
+        , build: new Build(build())
       }
     }
   ;
