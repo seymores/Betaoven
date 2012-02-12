@@ -16,7 +16,7 @@ var Project = new Schema({
   }
   , owner: {
       type: ObjectId
-    , ref: 'Owner'
+    , ref: 'User'
     , required: true
   }
   , builds: [{

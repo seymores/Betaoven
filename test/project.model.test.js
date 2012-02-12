@@ -1,11 +1,11 @@
 var Project = require('../models/project')
-  , Owner = require('../models/owner')
+  , User = require('../models/user')
   , should = require('should');
 
 
 describe('Project Model', function(){
   describe('#save()', function(){
-    var project, owner = new Owner();
+    var project, owner = new User();
 
     afterEach(function(done){
       Project.remove(done)
