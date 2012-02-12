@@ -6,7 +6,7 @@ const Invite = require('../models/invite')
 
 describe('Invite Model', function(){
   describe('#save()', function(){
-    var invite, data;
+    var invite, data, sets;
 
     afterEach(function(done){
       Invite.remove(done)
@@ -34,8 +34,8 @@ describe('Invite Model', function(){
       })
     })
 
-    var paths = ['email', 'project', 'from']
-    paths.forEach(function(path){
+    sets = ['email', 'project', 'from']
+    sets.forEach(function(path){
       it('should prompt error when "' +path+ '" not set', function(done){
         data = getData();
 

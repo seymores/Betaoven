@@ -1,11 +1,12 @@
 var Project = require('../models/project')
-  , User = require('../models/user')
-  , should = require('should');
+  , should = require('should')
+  , getData = require('./default-data').project
+  ;
 
 
 describe('Project Model', function(){
   describe('#save()', function(){
-    var project, owner = new User();
+    var project, data, sets;
 
     afterEach(function(done){
       Project.remove(done)
@@ -13,11 +14,7 @@ describe('Project Model', function(){
 
     it('should be able to save without error', function(done){
 
-      project = new Project({
-          name: 'betaoven'
-        , owner: owner
-        , description: 'oven to cook android app'
-      })
+      project = new Project(getData())
 
       project.save(function(err){
         should.not.exist(err)
@@ -26,34 +23,28 @@ describe('Project Model', function(){
       })
     })
 
-    it('should prompt error when "name" not set', function(done){
-      project = new Project({ owner: owner })
+    sets = ['name', 'owner'];
+    sets.forEach(function(path){
+      it('should prompt error when "' +path+ '" not set', function(done){
+        data = getData()
+        delete data[path]
+        project = new Project(data)
 
-      project.save(function(err){
-        should.exist(err)
+        project.save(function(err){
+          should.exist(err)
 
-        err.should.have.property('errors')
-        err.errors.should.have.property('name')
+          err.should.have.property('errors')
+          err.errors.should.have.property(path)
 
-        done()
-      })
-    })
-
-    it('should prompt error when "owner" not set', function(done){
-      project = new Project({ name: 'betaoven' })
-
-      project.save(function(err){
-        should.exist(err)
-
-        err.should.have.property('errors')
-        err.errors.should.have.property('owner')
-
-        done()
+          done()
+        })
       })
     })
 
     it('should not prompt error when "description" not set', function(done){
-      project = new Project({ name: 'betaoven', owner: owner })
+      data = getData()
+      delete data.description
+      project = new Project(data)
 
       project.save(function(err){
         should.not.exist(err)

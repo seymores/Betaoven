@@ -1,19 +1,17 @@
 var User = require('../models/user')
   , should = require('should')
+  , getData = require('./default-data').user
 
 describe('User Model', function(){
   describe('#save()', function(){
-    var user;
+    var user, data, sets;
 
     beforeEach(function(done){
       User.remove(done)
     })
 
     it('should save without error', function(done){
-      user = new User({
-          email: 'hello@betaoven.com'
-        , display_name: 'oven'
-      })
+      user = new User(getData())
 
       user.save(function(err){
         should.not.exist(err)
@@ -22,29 +20,21 @@ describe('User Model', function(){
       })
     })
 
-    it('should prompt error when "email" not set', function(done){
-      user = new User({ display_name: 'oven' })
+    sets = ['email', 'display_name']
+    sets.forEach(function(path){
+      it('should prompt error when "' +path+ '" not set', function(done){
+        data = getData()
+        delete data[path]
+        user = new User(data)
 
-      user.save(function(err){
-        should.exist(err)
+        user.save(function(err){
+          should.exist(err)
 
-        err.should.have.property('errors')
-        err.errors.should.have.property('email')
+          err.should.have.property('errors')
+          err.errors.should.have.property(path)
 
-        done()
-      })
-    })
-
-    it('should prompt error when "display_name" not set', function(done){
-      user = new User({ email: 'hello@betaoven.com' })
-
-      user.save(function(err){
-        should.exist(err)
-
-        err.should.have.property('errors')
-        err.errors.should.have.property('display_name')
-
-        done()
+          done()
+        })
       })
     })
   })
