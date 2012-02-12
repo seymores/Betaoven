@@ -6,6 +6,7 @@ const models = require('../../models')
 /**
  * Getting project info
  *
+ * @methohd GET
  * @param {UUID} project_id
  * @returns
  *  {UUID}    project_id
@@ -25,6 +26,7 @@ exports.get = function(req, res) {
 /**
  * Adding new Project
  *
+ * @method POST
  * @param {String} project_name
  * @param {String} project_desc (optional)
  * @param {UUID} owner_id
@@ -34,7 +36,7 @@ exports.get = function(req, res) {
  * @api public
  */
 
-exports.index = function(req, res) {
+exports.create = function(req, res) {
   res.send(200, { message: 'Not Implemented' })
 }
 

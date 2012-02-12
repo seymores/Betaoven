@@ -14,7 +14,7 @@ const Build = require('../../models/build')
  *
  */
 
-exports.index = function(req, res) {
+exports.create = function(req, res) {
   res.send(200, { message: 'Not Implemented' })
 }
 

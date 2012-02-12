@@ -14,13 +14,13 @@ const users = require('./routes/api/users')
 
 module.exports = api;
 
-api.get('/letmein', users.letmein)
+api.post('/letmein', users.letmein)
 
-api.get('/projects', projects.index)
+api.post('/projects', projects.create)
 api.get('/projects/:project_id', projects.get)
 api.get('/projects/invite', projects.invite)
 
-api.get('/builds/', builds.index)
+api.post('/builds/', builds.create)
 api.get('/builds/:build_id', builds.get)
 
 !module.parent
