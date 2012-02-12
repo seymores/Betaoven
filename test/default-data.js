@@ -5,26 +5,34 @@ const User = require('../models/user')
 
 var user
     = exports.user
-    = { email: 'hello@betaoven.com', display_name: 'oven'}
+    = function(){
+      return { email: 'hello@betaoven.com', display_name: 'oven'}
+    }
 
   , feedback
     = exports.feedback
-    = { by: new User(user), details: 'meow~' }
+    = function(){
+      return { by: new User(user()), details: 'meow~' }
+    }
 
   , project
     = exports.project
-    = {
-        name: 'betaoven'
-      , owner: new User(user)
-      , description: 'Oven to cook android app'
+    = function(){
+      return {
+          name: 'betaoven'
+        , owner: new User(user())
+        , description: 'Oven to cook android app'
+      }
     }
 
   , invite
     = exports.invite
-    = {
-        email: 'invite@betaoven.com'
-      , project: new Project(project)
-      , from: new User(user)
-      , message: 'Welcome to betaoven!'
+    = function(){
+      return {
+          email: 'invite@betaoven.com'
+        , project: new Project(project())
+        , from: new User(user())
+        , details: 'Welcome to betaoven!'
+      }
     }
   ;
