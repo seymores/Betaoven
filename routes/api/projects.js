@@ -22,9 +22,8 @@ exports.get = function(req, res) {
   res.send(200, { message: 'Not Implemented' })
 }
 
-
 /**
- * Adding new Project
+ * Listing all projects
  *
  * @method POST
  * @param {String} project_name
@@ -36,8 +35,33 @@ exports.get = function(req, res) {
  * @api public
  */
 
-exports.create = function(req, res) {
+exports.list = function(req, res) {
   res.send(200, { message: 'Not Implemented' })
+}
+
+/**
+ * Adding new Project
+ *
+ * curl -i -d "name=betaoven&description=Oven+to+cook+android+app&owner=4f3913f3e1cba7f528000001" localhost:3000/projects
+ *
+ * @method POST
+ * @param {String} project_name
+ * @param {String} project_desc (optional)
+ * @param {UUID} owner_id
+ * @returns
+ *  {Boolean} success
+ *  {String}  message Mandatory if failed
+ * @api public
+ */
+
+exports.create = function(req, res, next) {
+  var project = new Project(req.body);
+
+  project.save(function(err){
+    if (err) return next(err)
+
+    res.send(200, { project_id: project.id })
+  })
 }
 
 
