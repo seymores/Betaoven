@@ -4,7 +4,7 @@
 Name, desc created-at, [admins], status, private=true | false
 
 ##Build
-Title, desc, created at, uploader-email, uploader-id, status, version, version code, project id
+Title, desc, created at, uploader-email, uploader-id, status, version, version code, project ID
 
 ##User
 Display name, password, email, status
@@ -14,15 +14,18 @@ Display name, password, email, status
 
 ##POST /projects
 Params: name, desc, email
+
 Return: project hash ID
 
 ##POST /builds
-Params: title, desc, version, version code, email[user id], project I'd
-Return: build id
+Params: title, desc, version, version code, email[user id], project ID
+
+Return: build ID
 
 ##GET /projects
-Params: filter=sort,
+Params: filter=sort
+
 Return list of all public projects
 
 ##GET /projects/<ID>
-Get project with the given I'd
+Get project with the given ID
