@@ -23,6 +23,10 @@ var Project = new Schema({
       type: ObjectId
     , ref: 'Build'
   }]
+  , private: {
+      type: Boolean
+    , default: false
+  }
 })
 
 

@@ -52,5 +52,15 @@ describe('Project Model', function(){
         done()
       })
     })
+
+    it('should default "private" to false', function(done){
+      project = new Project(getData())
+
+      project.save(function(err){
+        (project.private === false).should.be.true
+
+        done()
+      })
+    })
   })
 })
