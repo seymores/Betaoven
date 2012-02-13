@@ -1,6 +1,7 @@
 const Vote = require('../models/vote')
     , should = require('should')
     , getData = require('./default-data').vote
+    , testTimestamp = require('./test-timestamp')
     ;
 
 describe('Vote Model', function(){
@@ -75,5 +76,7 @@ describe('Vote Model', function(){
         })
       })
     })
+
+    testTimestamp(it, Vote, getData)
   })
 })

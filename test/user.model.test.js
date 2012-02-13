@@ -1,6 +1,8 @@
 var User = require('../models/user')
   , should = require('should')
   , getData = require('./default-data').user
+  , testTimestamp = require('./test-timestamp')
+  ;
 
 describe('User Model', function(){
   describe('#save()', function(){
@@ -37,5 +39,7 @@ describe('User Model', function(){
         })
       })
     })
+
+    testTimestamp(it, User, getData)
   })
 })

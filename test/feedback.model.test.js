@@ -1,6 +1,8 @@
 const Feedback = require('../models/feedback')
     , getData = require('./default-data').feedback
     , should = require('should')
+    , testTimestamp = require('./test-timestamp')
+    ;
 
 
 describe('Feedback Model', function(){
@@ -40,6 +42,7 @@ describe('Feedback Model', function(){
       })
     })
 
+    testTimestamp(it, Feedback, getData)
   })
   // #save()
 })

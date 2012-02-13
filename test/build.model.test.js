@@ -1,6 +1,7 @@
 const Build = require('../models/build')
     , should = require('should')
     , getData = require('./default-data').build
+    , testTimestamp = require('./test-timestamp')
     ;
 
 
@@ -49,6 +50,8 @@ describe('Build Model', function(){
 
       done()
     })
+
+    testTimestamp(it, Build, getData)
   })
   // #save()
 })

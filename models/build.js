@@ -1,4 +1,5 @@
 const db = require('../db')
+    , plugins = require('./plugins')
     , Schema = require('mongoose').Schema
     , ObjectId = Schema.ObjectId
     ;
@@ -31,6 +32,13 @@ var Build = new Schema({
       , ref: 'Feedback'
     }]
 });
+
+
+/**
+ * Plugins
+ */
+
+Build.plugin(plugins.timestamp)
 
 
 var Model

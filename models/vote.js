@@ -1,4 +1,5 @@
 const db = require('../db')
+    , plugins = require('./plugins')
     , Schema = require('mongoose').Schema
     , ObjectId = Schema.ObjectId
     ;
@@ -23,6 +24,13 @@ var Vote = new Schema({
       , max: 1
     }
 });
+
+
+/**
+ * Plugins
+ */
+
+Vote.plugin(plugins.timestamp)
 
 
 var Model

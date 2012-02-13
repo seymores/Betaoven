@@ -1,4 +1,5 @@
 const db = require('../db')
+    , plugins = require('./plugins')
     , Schema = require('mongoose').Schema
     , ObjectId = Schema.ObjectId
     ;
@@ -25,6 +26,13 @@ var Invite = new Schema({
       , trim: true
     }
 })
+
+
+/**
+ * Plugins
+ */
+
+Invite.plugin(plugins.timestamp)
 
 
 var Model

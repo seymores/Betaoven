@@ -1,6 +1,7 @@
 var Project = require('../models/project')
   , should = require('should')
   , getData = require('./default-data').project
+  , testTimestamp = require('./test-timestamp')
   ;
 
 
@@ -62,5 +63,7 @@ describe('Project Model', function(){
         done()
       })
     })
+
+    testTimestamp(it, Project, getData)
   })
 })

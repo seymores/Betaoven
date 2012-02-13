@@ -1,6 +1,7 @@
 const Invite = require('../models/invite')
     , should = require('should')
     , getData = require('./default-data').invite
+    , testTimestamp = require('./test-timestamp')
     ;
 
 
@@ -53,6 +54,7 @@ describe('Invite Model', function(){
       })
     })
 
+    testTimestamp(it, Invite, getData)
   })
   // #save()
 })
