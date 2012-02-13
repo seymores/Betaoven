@@ -54,15 +54,17 @@ module.exports = function(it, Model, getData){
 
       prev = doc.modifiedAt
 
-      doc.save(function(err){
-        should.not.exist(err)
+      setTimeout(function(){
+        doc.save(function(err){
+          should.not.exist(err)
 
-        doc.modifiedAt.should.be.not.eql(prev)
-        isChanged = +doc.modifiedAt > +prev
-        isChanged.should.be.true
+          doc.modifiedAt.should.be.not.eql(prev)
+          isChanged = +doc.modifiedAt > +prev
+          isChanged.should.be.true
 
-        done()
-      })
+          done()
+        })
+      }, 10)
     })
   })
 }
