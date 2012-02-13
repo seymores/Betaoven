@@ -2,10 +2,10 @@ const should = require('should');
 
 
 module.exports = function(it, Model, getData){
-  
+
   var sets = ['createdAt', 'modifiedAt']
     , doc;
-  
+
   sets.forEach(function(path){
     it('should have "' +path+ '" set when saved', function(done){
       doc = new Model(getData())
@@ -41,10 +41,10 @@ module.exports = function(it, Model, getData){
       })
     })
   })
-  
+
   it('should update "modifiedAt" when modified', function(done){
     var prev, isChanged;
-    
+
     doc = new Model(getData())
     doc.save(function(err){
       should.not.exist(err)
