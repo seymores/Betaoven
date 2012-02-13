@@ -19,8 +19,14 @@ exports.index = function(req, res){
     console.log(" * index home request ");
 };
 
+exports.project = function(req, res) {
+    var filepath = path.normalize( __dirname + '/../public/project.html' );
+    res.sendfile( filepath );
+    console.log(" * Project request ");
+}; 
+
 exports.dashboard = function(req, res) {
-    res.send(dashboard, {'Content-Type': 'text/html'});
+    res.send(dashboard); //, {'Content-Type': 'text/html'});
     console.log(" * Dashboard request ");
 }; 
 

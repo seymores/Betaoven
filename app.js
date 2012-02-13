@@ -30,6 +30,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.get('/project', routes.project);
 app.get('/dashboard', routes.dashboard);
 app.post('/upload', routes.upload);
 
