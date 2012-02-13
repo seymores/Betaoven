@@ -14,6 +14,9 @@ const users = require('./routes/api/users')
 
 module.exports = api;
 
+api.use(restify.queryParser({ mapParams: false }))
+api.use(restify.bodyParser({ mapParams: false }))
+
 api.post('/letmein', users.letmein)
 
 api.post('/projects', projects.create)
