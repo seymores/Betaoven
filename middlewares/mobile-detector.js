@@ -19,7 +19,7 @@ module.exports = function(options){
      * Anything that looks like a bot should default to desktop.
      */
 
-    req.isMobile = mobile.test(ua) && !(desktop.test(ua) || bot.test(ua));
+    req.isMobile = mobile.test(ua) && (!desktop.test(ua) || !bot.test(ua));
     req.isDesktop = !req.isMobile;
 
     next();
