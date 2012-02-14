@@ -79,4 +79,48 @@ describe('User Model', function(){
 
     testTimestamp(it, User, getData)
   })
+  // #save()
+
+  describe('#auth()', function(){
+    var user, data = getData();
+
+    beforeEach(function(done){
+      user = new User(data)
+      user.save(function(err){
+        should.not.exist(err);
+
+        done();
+      })
+    })
+
+    afterEach(function(done){
+      User.remove(done);
+    })
+
+    it('should return user', function(done){
+      User.auth({
+          email: data.email
+        , password: data.password
+      }, function(err, user){
+        should.not.exist(err);
+        should.exist(user);
+        should.ok(user.email === data.email);
+        should.ok(User.hashPassword(data.password) === user.password);
+
+        done()
+      })
+    })
+
+    it('should not return anything', function(done){
+      User.auth({
+          email: data.email
+        , password: 'none'
+      }, function(err, user){
+        should.not.exist(err);
+        should.not.exist(user);
+
+        done()
+      })
+    })
+  })
 })

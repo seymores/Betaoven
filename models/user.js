@@ -27,7 +27,7 @@ var User = new Schema({
 
 User
   .pre('save', function(next) {
-    
+
     var password = this.password;
 
     if (this.isNew || this.isModified('password'))
@@ -50,6 +50,20 @@ User
     shasum.update(password)
 
     return shasum.digest('hex')
+  }
+
+User
+  .statics
+  .auth = function(data, next) {
+    var password = Model.hashPassword(data.password)
+      , q = Model.findOne();
+
+    q.where('email', data.email)
+    q.where('password', password)
+
+    next && q.exec(next)
+
+    return q;
   }
 
 

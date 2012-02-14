@@ -17,7 +17,9 @@ module.exports = api;
 api.use(restify.queryParser({ mapParams: false }))
 api.use(restify.bodyParser({ mapParams: false }))
 
+api.get('/token', users.token)
 api.post('/letmein', users.letmein)
+api.post('/auth', users.auth)
 
 api.get('/projects', projects.list)
 api.post('/projects', projects.create)
