@@ -20,6 +20,10 @@ var Project = new Schema({
     , ref: 'User'
     , required: true
   }
+  , admins: [{
+      type: ObjectId
+    , ref: 'User'
+  }]
   , builds: [{
       type: ObjectId
     , ref: 'Build'
@@ -29,6 +33,16 @@ var Project = new Schema({
     , default: false
   }
 })
+
+
+Project
+  .pre('save', function(next) {
+    if (this.isNew && this.owner)
+      this.admins.push(this.owner)
+
+    next()
+  })
+
 
 
 /**

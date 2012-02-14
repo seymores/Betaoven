@@ -64,6 +64,16 @@ describe('Project Model', function(){
       })
     })
 
+    it('owner should be set as admin by default', function(done){
+      project = new Project(getData());
+      project.save(function(err){
+        should.not.exist(err)
+        project.admins.should.include(project.owner)
+
+        done()
+      })
+    })
+
     testTimestamp(it, Project, getData)
   })
 })
