@@ -27,9 +27,11 @@ var User = new Schema({
 
 User
   .pre('save', function(next) {
+    
     var password = this.password;
 
-    this.set('password', Model.hashPassword(password))
+    if (this.isNew || this.isModified('password'))
+      this.set('password', Model.hashPassword(password))
 
     next()
   })

@@ -38,6 +38,27 @@ describe('User Model', function(){
       })
     })
 
+    it('should not re-hash the hashed password', function(done){
+      var hash;
+
+      user = new User(getData())
+      user.save(function(err){
+        should.not.exist(err)
+
+        hash = user.password
+
+        setTimeout(function(){
+          user.save(function(err){
+            should.not.exist(err)
+
+            hash.should.be.eql(user.password)
+
+            done()
+          })
+        }, 10)
+      })
+    })
+
     sets = ['email', 'display_name', 'password']
     sets.forEach(function(path){
       it('should prompt error when "' +path+ '" not set', function(done){
