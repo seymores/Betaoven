@@ -22,7 +22,23 @@ describe('User Model', function(){
       })
     })
 
-    sets = ['email', 'display_name']
+    it('should convert password to hash', function(done){
+      var hash;
+
+      data = getData()
+      user = new User(data)
+
+      user.save(function(err){
+        should.not.exist(err)
+
+        hash = User.hashPassword(data.password)
+        hash.should.be.eql(user.password)
+
+        done()
+      })
+    })
+
+    sets = ['email', 'display_name', 'password']
     sets.forEach(function(path){
       it('should prompt error when "' +path+ '" not set', function(done){
         data = getData()

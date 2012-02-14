@@ -7,7 +7,11 @@ const User = require('../models/user')
 var user
     = exports.user
     = function(){
-      return { email: 'hello@betaoven.com', display_name: 'oven'}
+      return {
+          email: 'hello@betaoven.com'
+        , display_name: 'oven'
+        , password: 'b@ta0ven'
+      }
     }
 
   , feedback
