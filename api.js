@@ -19,6 +19,7 @@ api.use(restify.bodyParser({ mapParams: false }))
 
 api.post('/letmein', users.letmein)
 
+api.get('/projects', projects.list)
 api.post('/projects', projects.create)
 api.get('/projects/:project_id', projects.get)
 api.get('/projects/invite', projects.invite)

@@ -25,6 +25,10 @@ exports.get = function(req, res) {
 /**
  * Listing all projects
  *
+ * { projects: [
+ *    { projectId: ID, projectName
+ * ]}
+ *
  * @method POST
  * @param {String} project_name
  * @param {String} project_desc (optional)
@@ -35,8 +39,16 @@ exports.get = function(req, res) {
  * @api public
  */
 
-exports.list = function(req, res) {
-  res.send(200, { message: 'Not Implemented' })
+exports.list = function(req, res, next) {
+  Project.list({
+      sort: 'createdAt'
+    , page: 0 // not implemented
+    , perPage: 10 // not implemented
+  }, function(err, projects){
+    if (err) return next(err);
+
+    res.send(200, projects)
+  })
 }
 
 /**
