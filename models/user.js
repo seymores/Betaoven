@@ -52,7 +52,19 @@ User
     return shasum.digest('hex')
   }
 
+User
+  .statics
+  .auth = function(data, next) {
+    var password = Model.hashPassword(data.password)
+      , q = Model.findOne();
 
+    q.where('email', data.email)
+    q.where('password', password)
+
+    next && q.exec(next)
+
+    return q;
+  }
 
 
 /**
