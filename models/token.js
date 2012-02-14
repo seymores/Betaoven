@@ -30,6 +30,15 @@ Token
   })
 
 
+Token
+  .statics
+  .findByToken = function(token, next) {
+    var q = Model.findOne({ token: token });
+
+    next && q.exec(next)
+
+    return q
+  }
 
 
 /**
