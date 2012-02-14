@@ -18,7 +18,7 @@ Token
     var token;
 
     if (this.isNew && this.email) {
-      token = ''+Math.round(+new Date() * Math.random())
+      token = this.email + (+new Date())
       token = crypto.createHash('sha1')
         .update(token)
         .digest('hex')
