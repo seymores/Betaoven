@@ -27,7 +27,7 @@ var User = new Schema({
 
 User
   .pre('save', function(next) {
-    
+
     var password = this.password;
 
     if (this.isNew || this.isModified('password'))
@@ -51,6 +51,8 @@ User
 
     return shasum.digest('hex')
   }
+
+
 
 
 /**
