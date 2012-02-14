@@ -44,6 +44,39 @@ Project
   })
 
 
+/**
+ * Static Methods
+ */
+
+Project
+  .statics
+  .list = function(options, next) {
+    var q = Model.find();
+
+    if (typeof options === 'function') {
+      next = options;
+      options = {};
+    }
+
+    options.filter && Object.keys(options.filter)
+      .forEach(function(key){
+        q.where(key, options.filter[key]);
+      })
+
+    options.sort && options.sort
+      .split(',')
+      .forEach(function(v){
+        var sort = v.trim().split('.')
+          , order = sort[1] === 'desc' ? -1 : 1;
+
+        q.sort(sort[0], order);
+      });
+
+    next && q.exec(next)
+
+    return q
+  }
+
 
 /**
  * Plugins
