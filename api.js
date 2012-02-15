@@ -1,5 +1,6 @@
 const restify = require('restify')
     , api = restify.createServer()
+    , middlewares = require('./middlewares')
     , PORT = 3000
 
 /**
@@ -16,6 +17,8 @@ module.exports = api;
 
 api.use(restify.queryParser({ mapParams: false }))
 api.use(restify.bodyParser({ mapParams: false }))
+
+api.use(middlewares.auth());
 
 api.get('/token', users.token)
 api.post('/letmein', users.letmein)
