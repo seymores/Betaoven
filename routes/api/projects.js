@@ -67,8 +67,17 @@ exports.list = function(req, res, next) {
  */
 
 exports.create = function(req, res, next) {
-  var project = new Project(req.body);
+  var data = req.body
+    , project;
 
+  // Prevent injecting data
+  delete data.owner;
+  delete data.build;
+  delete data.admins;
+
+  data.owner = req.user.id;
+
+  project = new Project(data);
   project.save(function(err){
     if (err) return next(err)
 
