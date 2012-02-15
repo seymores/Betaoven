@@ -66,6 +66,15 @@ User
     return q;
   }
 
+User
+  .statics
+  .findByEmail = function(email, next) {
+    var q = Model.findOne({ email: email });
+
+    next && q.exec(next)
+
+    return q;
+  }
 
 /**
  * Plugins

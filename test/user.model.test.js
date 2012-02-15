@@ -123,4 +123,24 @@ describe('User Model', function(){
       })
     })
   })
+  // #auth()
+
+  describe('#findByEmail()', function(){
+    var user, data = getData();
+
+    before(function(done){
+      user = new User(data);
+      user.save(done);
+    })
+
+    it('get user with the email provided', function(done){
+      User.findByEmail(data.email, function(err, _user){
+        should.not.exist(err)
+        should.ok(_user.email === user.email)
+
+        done()
+      })
+    })
+  })
+  // #findByEmail()
 })
