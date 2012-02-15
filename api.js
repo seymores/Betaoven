@@ -16,9 +16,10 @@ const users = require('./routes/api/users')
 module.exports = api;
 
 api.use(restify.queryParser({ mapParams: false }))
-api.use(restify.bodyParser({ mapParams: false }))
 
+api.use(middlewares.bodyParser());
 api.use(middlewares.auth());
+
 
 api.get('/token', users.token)
 api.post('/letmein', users.letmein)
@@ -29,6 +30,7 @@ api.post('/projects', projects.create)
 api.get('/projects/:project_id', projects.get)
 api.get('/projects/invite', projects.invite)
 
+api.post('/project/:project_id/builds/', builds.create)
 api.post('/builds/', builds.create)
 api.get('/builds/:build_id', builds.get)
 
