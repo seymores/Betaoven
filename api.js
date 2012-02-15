@@ -30,7 +30,7 @@ api.post('/projects', projects.create)
 api.get('/projects/:project_id', projects.get)
 api.get('/projects/invite', projects.invite)
 
-api.post('/project/:project_id/builds/', builds.create)
+api.post('/project/:pid/builds/', builds.create)
 api.post('/builds/', builds.create)
 api.get('/builds/:build_id', builds.get)
 

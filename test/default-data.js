@@ -45,7 +45,8 @@ var user
     = exports.build
     = function(){
       return {
-          version_code: '0.0.1'
+          project: new Project(project())
+        , version_code: '0.0.1'
         , version_label: 'dev'
         , path: 'path/to/build/file'
       }

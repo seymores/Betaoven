@@ -6,18 +6,18 @@ const db = require('../db')
 
 
 var Build = new Schema({
-    version_code: {
-        type: String
+    project: {
+        type: ObjectId
+      , ref: 'Project'
       , required: true
+    }
+  , version_code: {
+        type: String
       , trim: true
     }
   , version_label: {
         type: String
-      , required: true
       , trim: true
-    }
-  , path: {
-        type: String
     }
   , status: {
         type: String

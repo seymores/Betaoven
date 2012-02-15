@@ -1,4 +1,8 @@
-const Build = require('../../models/build')
+const models = require('../../models')
+    , Build = models.Build
+    , Project = models.Project
+    , fs = require('fs')
+    , config = require('../../config/upload');
 
 
 /**
@@ -14,10 +18,69 @@ const Build = require('../../models/build')
  *
  */
 
-exports.create = function(req, res) {
+exports.create = [
+  function loadProject(req, res, next) {
+    var pid = req.params.pid || req.body.pid;
 
-  res.send(200, { message: 'Not Implemented' })
-}
+    if (!pid)
+      return res.send(200, { error: 'Missing pid' })
+
+    Project.findById(pid, function(err, project){
+      if (err) return next(err);
+
+      if (!project)
+        res.send(200, { error: 'Project not belongs to you' })
+      else {
+        req.project = project;
+        next()
+      }
+    })
+  }
+, function saveBuild(req, res, next){
+    var build = new Build(req.body);
+
+    build.project = req.project.id;
+    build.save(function(err){
+      if (err) return next(err);
+
+      req.build = build;
+      res.send(200, build)
+
+      next()
+    })
+  }
+, function moveFileToCorrectPath(req, res){
+    var file = req.file.file
+      , project = req.project
+      , build = req.build
+      , newPath = config.dest +'/'+ build.id;
+
+    fs.unlink(newPath, function(err){
+
+      // Should have better way to handle this
+      // when file already exist then only we remove
+
+      fs.mkdir(config.dest, function(err){
+
+        // For now take it as we have rights to create
+        // directory, come fix this later
+
+        fs.rename(file.path, newPath, function(err){
+          if (err)
+            return console.log(err)
+
+          build.path = newPath;
+          build.save(function(err){
+            if (err)
+              return console.log(err)
+
+            console.log('File moved to ' + newPath)
+          })
+        })
+      })
+    })
+
+}]
 
 
 /**

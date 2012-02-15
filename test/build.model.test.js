@@ -23,7 +23,7 @@ describe('Build Model', function(){
       })
     })
 
-    sets = ['version_code', 'version_label'];
+    sets = ['project'];
     sets.forEach(function(path){
       it('should prompt error when "' +path+ '" not set', function(done){
         var data = getData();
