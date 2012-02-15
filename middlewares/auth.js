@@ -3,8 +3,8 @@ var models = require('../models')
   , User = models.User;
 
 module.exports = function(options){
-  
-  
+
+
   return function(req, res, next){
     var token = req.query.token;
 
@@ -12,7 +12,7 @@ module.exports = function(options){
       req.authenticated = false;
       req.authToken = null;
       req.user = null;
-      
+
       next()
     } else
       Token.findByToken(token, function(err, token){
