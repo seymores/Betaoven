@@ -98,6 +98,19 @@ exports.create = function(req, res, next) {
  * @api public
  */
 
-exports.invite = function(req, res) {
-  res.send(200, { message: 'Not Implemented' })
-}
+exports.invite = function respond(){
+  var data = req.body,
+    invite;
+
+  if (!req.authenticated)
+    return res.send(200, { error: 'Not authenticated' })
+
+  data.project = req.pid;
+  invite = new Invite(data);
+
+  invite.save(function(err){
+    if (err) return next(err);
+
+    res.send(200, { message: 'Invitation sent' })
+  })
+};
