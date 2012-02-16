@@ -27,12 +27,11 @@ api.post('/auth', users.auth)
 
 api.get('/projects', projects.list)
 api.post('/projects', projects.create)
-api.get('/projects/:project_id', projects.get)
-api.get('/projects/invite', projects.invite)
+api.get('/project/:pid', projects.get)
+api.get('/project/:pid/invite', projects.invite)
 
 api.post('/project/:pid/builds/', builds.create)
-api.post('/builds/', builds.create)
-api.get('/builds/:build_id', builds.get)
+api.get('/project/:pid/build/:bid', builds.get)
 
 !module.parent
   && api.listen(PORT)

@@ -20,7 +20,7 @@ const models = require('../../models')
 
 exports.create = [
   function loadProject(req, res, next) {
-    var pid = req.params.pid || req.body.pid;
+    var pid = req.params.pid;
 
     if (!pid)
       return res.send(200, { error: 'Missing pid' })
