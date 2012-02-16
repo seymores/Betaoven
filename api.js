@@ -1,7 +1,7 @@
 const restify = require('restify')
     , api = restify.createServer()
     , middlewares = require('./middlewares')
-    , PORT = 3000
+    , config = require('./config')
 
 /**
  * Routes
@@ -20,7 +20,6 @@ api.use(restify.queryParser({ mapParams: false }))
 api.use(middlewares.bodyParser());
 api.use(middlewares.auth());
 
-
 api.get('/token', users.token)
 api.post('/letmein', users.letmein)
 api.post('/auth', users.auth)
@@ -35,5 +34,5 @@ api.post('/project/:pid/builds', builds.create)
 api.get('/project/:pid/build/:bid', builds.get)
 
 !module.parent
-  && api.listen(PORT)
-  && console.log('API listening at port ' + PORT)
+  && api.listen(config.site.port)
+  && console.log('API listening at port ' + config.site.port)

@@ -6,6 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , middlewares = require('./middlewares')
+  , config = require('./config')
+  ;
 
 var app = module.exports = express.createServer();
 
@@ -38,5 +40,7 @@ app.get('/project', routes.project);
 app.get('/dashboard', routes.dashboard);
 app.post('/upload', routes.upload);
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
+!module.parent
+  && app.listen(config.site.port)
+  && console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
