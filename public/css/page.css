@@ -1,0 +1,23 @@
+
+body {
+    background-color: #f2f2f2;
+}
+
+div.build_box {
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+div.build_box .content {
+    /* padding: 0.3em; */
+    margin: 10px;
+}
+
+/*
+ warning-red: 9B2F2E
+ dark-gray: #4A4A4A
+ light-gray: #B7B4B2
+ green: #3A7537
+ very dark: #252525
+*/
