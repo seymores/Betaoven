@@ -80,7 +80,18 @@ exports.create = [
       })
     })
 
-}]
+}];
+
+
+exports.list = function(req, res, next) {
+  var pid = req.params.pid;
+
+  Build.find({ project: pid }, function(err, builds){
+    if (err) return next(err);
+
+    res.send(200, builds);
+  })
+}
 
 
 /**
@@ -99,5 +110,19 @@ exports.create = [
  */
 
 exports.get = function(req, res) {
-  res.send(200, { message: 'Not Implemented' })
+  var pid = req.params.pid
+    , bid = req.params.bid;
+
+  if (!pid || !bid)
+    res.send(200, { error: 'Missing pid or bid' })
+  else {
+    Build.findById(bid, function(err, build){
+      if (err) return next(err);
+
+      if (!build)
+        res.send(404, { message: 'Not Found' })
+      else
+        res.send(200, build)
+    })
+  }
 }

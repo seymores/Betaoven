@@ -30,7 +30,8 @@ api.post('/projects', projects.create)
 api.get('/project/:pid', projects.get)
 api.get('/project/:pid/invite', projects.invite)
 
-api.post('/project/:pid/builds/', builds.create)
+api.get('/project/:pid/builds', builds.list)
+api.post('/project/:pid/builds', builds.create)
 api.get('/project/:pid/build/:bid', builds.get)
 
 !module.parent
