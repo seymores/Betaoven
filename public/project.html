@@ -1,136 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>AndroidRocket - Project</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
 
-    <!-- Le styles -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/page.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<title>Welcome to Foundation</title>
+  
+	<!-- Included CSS Files -->
+	<link rel="stylesheet" href="/css/foundation.css">
+	<!-- <link rel="stylesheet" href="/css/presentation.css"> -->
+	<link rel="stylesheet" href="/css/typography.css">
+	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="/css/project.css">
 
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  </head>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
 
-  <body>
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="/css/ie.css">
+	<![endif]-->
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">AndroidRocket</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-              <li><a href="#contact">Profile</a></li>
-              <li><a href="#contact">Github</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+</head>
+<body>
 
-    <div class="container">
+    <!-- container -->
+    <section class="header">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h2>#Project Name here# AndroidRocket</h2>
+				<h5 class="subheader">#project desc here, 2 lines # Deploy & Distribute Immediately</h5>
+                                <div class="project_line"></div>
+			</div>
+		</div>
+            </div> <!-- /header container -->
+    </section>
 
-    <div class="row">
-        <div class="span3">
-            <h1>BetaOven Platform</h1>
-           <div class="btn-toolbar">
+            <div class="container">
+		<div class="row">
 
-               <div class="btn-group">
-                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Options<span class="caret"></span> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Edit Project</a></li>
-                    <li><a href="#">Invite Member</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Close Project</a></li>
-                </ul>
-            </div><!-- /btn-group -->
-            <div class="btn-group">
-                <a href="#" class="btn btn-warning">Upload</a>
-            </div><!-- /btn-group -->
-        </div>
- 
+                    <!-- Side bar -->
+                    <div class="three columns">
 
-            <p> Project description here. Quickly deploy your android apps and distribute it painlessly.</p>
-            <h4>Members</h4>
-            <p> Member list here </p>
-        </div>
-        <div class="span9">
-            <div class="build_list">
-                <div class="row build_box"> 
-                    <div class="span5 content">
-                        <h3>Build 1</h3> 
-                        <p>
-                        Fixed: 566489 - Inline URL autocomplete (up the next slash).
-                        Fixed: 171237 - Find in Page: scroll so the highlighted result is in middle of the screen.
-                        Fixed: 198964 - Enable smooth scrolling by default.
-                        </p>
-                    </div>
-                    <div class="span4 content">
-                        <h2>PASS</h2>
-                    </div>
-                </div>
-                <div class="build_box"> Build 1 </div>
-                <div class="build_box"> Build 1 </div>
-                <div class="build_box"> Build 1 </div>
-            </div>
-            <img src="/img/mock.png" />
-        </div>
-    </div>
+                        <div class="row">
+                            <div class="twelve phone-one columns">
+                                <img src="http://placehold.it/300x300">
+                                <h5 class="subheader"> Some project description here </h5>
+                                <p> Project admin @seymores </p>
+                            </div>
+                        </div>
 
-    
+                    </div> <!-- /sidebar -->
 
-    </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
+                    <div class="nine columns"> <!-- main body -->
 
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/backbone-min.js"></script>
-    <script src="../js/project.js"></script>
-    <!-- <script src="../js/bootstrap.min.js"></script> -->
-    <script src="../js/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap-dropdown.js"></script>
+                        <!-- Builds row 1 -->
+                        <div class="row">
+                            <div class="two columns build_icon_box">
+                                <img src="http://placehold.it/300x300">
+                                <p><a href="#">Download</a></p>
+                            </div>
+                            <div class="ten columns">
+                            </div>
+                        </div>
 
-    <script src="../js/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap-button.js"></script>
-    <script src="../js/bootstrap-collapse.js"></script>
+                        <!-- Builds row 2 -->
+                        <!-- Builds row 3 -->
+                        <!-- Builds row 4 -->
+                        <!-- Builds row 5 -->
 
-    <script src="../js/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap-typeahead.js"></script>
 
-  </body>
+                    </div> <!-- /main body -->
+                        
+
+		</div>
+
+	</div>
+	<!-- container -->
+
+
+
+
+	<!-- Included JS Files -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/modernizr.foundation.js"></script>
+	<script src="/js/foundation.js"></script>
+	<script src="/js/app.js"></script>
+
+</body>
 </html>
-
