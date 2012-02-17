@@ -9,6 +9,7 @@ var user
     = function(){
       return {
           email: 'hello@betaoven.com'
+        , username: 'betaoven'
         , display_name: 'oven'
         , password: 'b@ta0ven'
       }
