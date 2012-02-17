@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+
+	<title>AndroidRocket -- Login</title>
+  
+	<!-- Included CSS Files -->
+	<link rel="stylesheet" href="/css/foundation.css">
+	<!-- <link rel="stylesheet" href="/css/presentation.css"> -->
+	<link rel="stylesheet" href="/css/typography.css">
+	<link rel="stylesheet" href="/css/forms.css">
+	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="/css/project.css">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="/css/ie.css">
+	<![endif]-->
+
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+    <!-- header container --> 
+    <section class="header">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h2>#Project Name here# AndroidRocket</h2>
+				<h5 class="subheader">#project desc here, 2 lines # Deploy & Distribute Immediately</h5>
+                                <div class="project_line"></div>
+			</div>
+		</div>
+            </div> <!-- /header container -->
+    </section>
+
+
+    <!-- container --> 
+	<div class="container">
+
+		<div class="row">
+                    <div class="six columns">
+                    
+                    <h4> New apk file upload</h4>
+                    <p></p>
+
+                        <form class="nice">
+                            <label>Changelog or description</label>
+                            <textarea name="changelog" class="changelog"></textarea>
+                            <label>Version</label>
+                            <input name="version" type="text" class="input-text"/>
+                            <label>APK file</label>
+                            <input type="file" name="apkfile" />
+                            <p> 
+                            <br/>
+                            <input name="submit" type="submit" value="Continue" class="input-submit" />
+                            </p>
+                        </form>
+                    </div>                    
+                    
+
+                    <div class="six columns">
+                        <div class="panel hide-on-phones">
+                            <h4>Pro Account</h4>
+                            <p>
+                            AndroidRocket is commercially supported by BetaOven that provides larger upload account and unlimited projects. 
+                            Currently our pro account is a low $9.70 per month. 
+                            </p>
+                            <p>
+                            <a class="nice radius blue button mobile src-download" href="/register">Go pro here</a>
+                            </p>
+                        </div>
+                    </div>                    
+                    
+		</div> <!-- /row -->
+
+	</div> <!-- /container -->
+
+
+
+        <footer class="row">
+            <hr />
+        </footer>
+
+	<!-- Included JS Files -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/modernizr.foundation.js"></script>
+	<script src="/js/foundation.js"></script>
+	<script src="/js/app.js"></script>
+
+</body>
+</html>

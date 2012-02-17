@@ -14,3 +14,7 @@ section.header {
 div.build_icon_box {
     text-align:center;
 }
+
+textarea.changelog {
+    height: 140px;
+}
