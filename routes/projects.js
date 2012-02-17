@@ -21,19 +21,19 @@ exports.list = function(req, res) {
 /**
  * GET /<USERNAME>/<PID>
  *
- * Get all builds for a project
+ * Project info and list of all builds
  */
 
 exports.show = function(req, res) {
 
-  res.render('builds/list', {
+  res.render('projects/show', {
       title: 'List all builds'
   });
 }
 
 
 /**
- * GEt /projects/new
+ * GET /projects/new
  */
 
 exports.new = function(req, res) {
