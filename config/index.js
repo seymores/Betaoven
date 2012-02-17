@@ -4,4 +4,5 @@ module.exports = {
   , db: require('./db')
   , upload: require('./upload')
   , env: require('./env')
+  , session: require('./session')
 }
