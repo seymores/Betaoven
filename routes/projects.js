@@ -4,11 +4,10 @@ var models = require('../models')
   ;
 
 
-
 /**
- * GET /projects
+ * GET /<USERNAME>
  *
- * List all projects
+ * User profile with projects of user have
  */
 
 exports.list = function(req, res) {
@@ -16,6 +15,32 @@ exports.list = function(req, res) {
   res.render('projects/list', {
       title: 'List all projects'
   })
+}
+
+
+/**
+ * GET /<USERNAME>/<PID>
+ *
+ * Get all builds for a project
+ */
+
+exports.show = function(req, res) {
+
+  res.render('builds/list', {
+      title: 'List all builds'
+  });
+}
+
+
+/**
+ * GEt /projects/new
+ */
+
+exports.new = function(req, res) {
+
+  res.render('projects/new', {
+      title: 'Add new project'
+  });
 }
 
 
@@ -32,16 +57,14 @@ exports.create = function(req, res) {
 
 
 /**
- * GET /project/<ID>
+ * DELETE /project/<PID>
  *
- * Get project details
+ * Delete a project
  */
 
-exports.show = function(req, res) {
+exports.destroy = function(req, res) {
 
-  res.render('projects/show', {
-      title: 'Show project'
-  });
+  res.redirect('dashboard')
 }
 
 

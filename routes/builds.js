@@ -5,27 +5,25 @@ var models = require('../models')
 
 
 /**
- * GET /project/<PID>/builds
- *
- * Get all builds for a project
- */
-
-exports.list = function(req, res) {
-
-  res.render('builds/list', {
-      title: 'List all builds'
-  });
-}
-
-
-/**
- * GET /project/<PID>/build/<BID>
+ * GET /<USERNAME>/<PID>/<BID>
  */
 
 exports.show = function(req, res) {
 
   res.render('builds/show', {
       title: 'Display build info'
+  });
+}
+
+
+/**
+ *
+ */
+
+exports.new = function(req, res) {
+
+  res.render('builds/new', {
+      title: 'Adding new build'
   });
 }
 
@@ -38,21 +36,7 @@ exports.show = function(req, res) {
 
 exports.create = function(req, res) {
 
-  res.redirect('projects')
-}
-
-
-/**
- * GET /project/<PID>/builds/new
- *
- * Creating new project
- */
-
-exports.new = function(req, res) {
-
-  res.render('builds/new', {
-      title: 'Creating new build'
-  });
+  res.redirect('dashboard')
 }
 
 
@@ -62,7 +46,7 @@ exports.new = function(req, res) {
  * Delete a build
  */
 
-exports.destroy = function(req, res) {
+exports.destory = function(req, res) {
 
-  res.redirect('builds')
+  res.redirect('dashboard')
 }
