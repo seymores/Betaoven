@@ -17,4 +17,5 @@ div.build_icon_box {
 
 textarea.changelog {
     height: 140px;
+    width: 80%;
 }
