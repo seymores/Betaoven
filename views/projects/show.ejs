@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="row">
+
+    <!-- Side bar -->
+    <div class="three columns">
+
+
+      <div class="row build">
+        <div class="twelve columns hide-on-phones">
+
+
+          <img src="/img/steal-rocket.jpg">
+          <h5 class="subheader"><%= description %></h5>
+
+          <p>
+            <a href="/upload/<%= project.id %>" class="large blue button radius">
+              Upload Build
+            </a>
+          </p>
+          <p>
+            <a href="">Edit Project Settings</a>
+          </p>
+
+          <!--
+          <hr/>
+
+          <p>Project admin @seymores</p>
+          <p><Strong>Project members</strong></p>
+          <ul>
+              <li>ping</li>
+              <li>tansu</li>
+              <li>sooyoung</li>
+              <li>Add member</li>
+          </ul>
+          -->
+        </div>
+      </div>
+
+    </div> <!-- /sidebar -->
+
+
+    <div class="nine columns"> <!-- main body -->
+
+      <% for(var i=0, len=builds.length, build; build = builds[i]; i++) { %>
+      <div class="row">
+          <div class="two columns build_icon_box hide-on-phones">
+
+            <% if (build.downloads.length) { %>
+              <img src="/img/downloaded.png">
+            <% } else { %>
+              <img src="/img/download.png">
+            <% } %>
+
+            <p><a href="/project/<%= project.id %>/<%= build.id %>/download">
+              Download
+            </a></p>
+          </div>
+          <div class="ten columns">
+            <h5>
+              <a href="/project/<%= project.id %>/<%= build.id %>">
+                <%= build.filename %>,
+                <%= build.version_code
+                  ? 'version: ' + build.version_code
+                  : '' %>
+              </a>
+            </h5>
+            <p>
+              <%= build.changelog %>
+            </p>
+
+            <p>
+              <%= build.prettySize %> Uploaded
+              <strong>
+                <%= build.prettyCreatedAt %>
+              </strong>
+            </p>
+
+            <% if (build.upVotes.length) { %>
+            <span class="green radius label">
+              <%= build.upVotes.length %> ppl approved
+            </span>
+            <% } %>
+
+            <% if (build.downVotes.length) { %>
+            <span class="green radius label">
+              <%= build.downVotes.length %> ppl disapproved
+            </span>
+            <% } %>
+
+            <% if (builds.downloads) { %>
+            <span class="white radius label">
+              <%= builds.downloads.length %> downloads
+            </span>
+            <% } %>
+            <hr/>
+          </div>
+      </div>
+      <% } %>
+
+      <!-- Builds row 1 -->
+      <!--
+      <div class="row">
+          <div class="two columns build_icon_box hide-on-phones">
+            <img src="http://placehold.it/100x100">
+            <p><a href="#">Download</a></p>
+          </div>
+          <div class="ten columns">
+            <h5 class=""><a href="">beta_oven1.apk, version: 2.3</a></h5>
+            <p> 0858b78 First draft of public home page </p>
+
+            <p> 623kb Uploaded <strong>4 hours ago.</strong></p>
+            <span class="green radius label">9 ppl approved</span>
+            <span class="white radius label">4 downloads</span>
+            <hr/>
+          </div>
+      </div>
+      -->
+
+      <!-- Builds row 2 -->
+      <!--
+      <div class="row">
+          <div class="two columns build_icon_box hide-on-phones">
+            <img src="http://placehold.it/100x100">
+            <p><a href="#">Download</a></p>
+          </div>
+          <div class="ten columns">
+            <h5 class=""><a href="">beta_oven-0.apk, version 2.2</a></h5>
+            <p>Android-PullToRefresh's description:
+            Implementation of the Pull-to-Refresh UI Pattern for Android</p>
+            <p> 523kb Uploaded <strong>8 hours ago.</strong></p>
+            <span class="green radius label">4 ppl approved</span>
+            <span class="red radius label">5 ppl disapproved</span>
+            <span class="white radius label">5 downloads</span>
+            <hr/>
+          </div>
+      </div>
+      -->
+
+      <!-- Builds row 3 -->
+      <!--
+      <div class="row">
+          <div class="two columns build_icon_box hide-on-phones">
+            <img src="http://placehold.it/100x100">
+            <p><a href="#">Download</a></p>
+          </div>
+          <div class="ten columns">
+            <h5 class=""><a href="">beta_oven-0.1.apk, version 2.1</a></h5>
+            <p> macgap's description: Desktop WebKit wrapper for HTML/CSS/JS applications.</p>
+            <p> 127kb Uploaded <strong>2 days ago.</strong></p>
+            <span class="green radius label">3 ppl approved</span>
+            <span class="white radius label">9 downloads</span>
+            <hr/>
+          </div>
+      </div>
+      -->
+
+    </div> <!-- /main body -->
+
+
+  </div>
+
+</div>
+<!-- container -->
