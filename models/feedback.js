@@ -11,6 +11,23 @@ var Feedback = new Schema({
       , ref: 'User'
       , required: true
     }
+  , build: {
+        type: ObjectId
+      , ref: 'Build'
+      , required: true
+    }
+  , project: {
+        type: ObjectId
+      , ref: 'Project'
+      , required: true
+    }
+  , point: {
+        type: Number
+      , required: true
+      , default: 0
+      , min: -1
+      , max: 1
+    }
   , details: {
         type: String
       , required: true
