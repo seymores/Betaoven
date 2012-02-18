@@ -28,7 +28,6 @@ var Build = new Schema({
         type: String
       , default: 'pending'
     }
-  , actions: [ObjectId]
   , changelog: {
       type: String
     , trim: true
@@ -45,14 +44,14 @@ var Build = new Schema({
 
 
 Build
-  .virtual('upVotes')
+  .virtual('disapproved')
   .get(function() {
-    var votings = this.feedbacks;
+    var feedbacks = this.feedbacks;
     var up = [];
 
-    votings.forEach(function(v){
-      if (v.point > 0)
-        up[up.length] = v;
+    feedbacks.forEach(function(f){
+      if (f.point < 0)
+        up[up.length] = f;
     })
 
     return up;
@@ -60,17 +59,47 @@ Build
 
 
 Build
-  .virtual('downVotes')
+  .virtual('approved')
   .get(function() {
-    var votings = this.feedbacks;
+    var feedbacks = this.feedbacks;
     var down = [];
 
-    votings.forEach(function(v){
-      if (v.point < 0)
-        down[down.length] = v;
+    feedbacks.forEach(function(f){
+      if (f.point > 0)
+        down[down.length] = f;
     })
 
     return down;
+  })
+
+
+Build
+  .virtual('numDisapproved')
+  .get(function() {
+    return this.disapproved.length || 0;
+  })
+
+
+Build
+  .virtual('numApproved')
+  .get(function() {
+    return this.approved.length || 0;
+  })
+
+
+Build
+  .virtual('numDownloads')
+  .get(function() {
+    return this.downloads.length || 0;
+  })
+
+
+Build
+  .virtual('numNoFeedback')
+  .get(function() {
+    var nd = this.downloads.length || 0
+      , nf = this.feedbacks.length || 0
+    return nd - nf;
   })
 
 
@@ -91,7 +120,7 @@ Build
         : this.size > 1024
         ? 'kb'
         : 'b';
-  
+
     return Math.round(size / sizes[unit]) + (size % sizes[unit]) + unit;
   })
 
