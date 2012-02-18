@@ -1,0 +1,53 @@
+  <!-- container -->
+  <div class="container">
+
+    <div class="row">
+      <div class="eight columns">
+
+        <h4> New apk file upload</h4>
+        <form class="nice" action="/upload" method="post" enctype="multipart/form-data">
+            <p></p>
+
+            <p>
+              <label>Changelog or description</label>
+              <textarea name="changelog" class="changelog">Update to new UI</textarea>
+            </p>
+
+            <p>
+              <label>Version</label>
+              <input name="version_code" type="text" class="input-text" value="0.0.1" />
+            </p>
+
+            <p>
+              <label>APK file</label>
+              <input type="file" name="apkfile" required />
+            </p>
+
+
+            <p>
+              <input type="submit" value="Continue" class="input-submit nice radius small blue button" />
+            </p>
+
+            <% if (project) { %>
+              <input type="hidden" name="project" value="<%= project.id %>" />
+            <% } %>
+        </form>
+      </div>
+
+<!--
+      <div class="six columns">
+        <div class="panel hide-on-phones">
+          <h4>Pro Account</h4>
+          <p>
+          AndroidRocket is commercially supported by BetaOven that provides larger upload account and unlimited projects.
+          Currently our pro account is a low $9.70 per month.
+          </p>
+          <p>
+          <a class="nice radius blue button mobile src-download" href="/register">Go pro here</a>
+          </p>
+        </div>
+      </div>
+-->
+    </div> <!-- /row -->
+
+  </div> <!-- /container -->
