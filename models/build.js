@@ -38,6 +38,36 @@ var Build = new Schema({
 });
 
 
+Build
+  .virtual('voting.up')
+  .get(function() {
+    var votings = this.voting;
+    var up = [];
+
+    votings.forEach(function(v){
+      if (v.point > 0)
+        up[up.length] = v;
+    })
+
+    return up;
+  })
+
+
+Build
+  .virtual('voting.down')
+  .get(function() {
+    var votings = this.voting;
+    var down = [];
+
+    votings.forEach(function(v){
+      if (v.point < 0)
+        down[down.length] = v;
+    })
+
+    return down;
+  })
+
+
 /**
  * Plugins
  */
