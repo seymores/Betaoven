@@ -19,7 +19,14 @@ const models = require('../../models')
  */
 
 exports.get = function(req, res) {
-  res.send(200, { message: 'Not Implemented' })
+  var q = Project.find({ _id: req.params.pid })
+
+  q.populate('builds')
+
+  q.exec(function(err, project){
+    res.send(200, project)
+  })
+
 }
 
 /**
