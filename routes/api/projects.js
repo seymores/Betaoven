@@ -19,7 +19,7 @@ const models = require('../../models')
  */
 
 exports.get = function(req, res) {
-  var q = Project.find({ _id: req.params.pid })
+  var q = Project.findOne({ _id: req.params.pid })
 
   q.populate('builds')
 
