@@ -5,6 +5,8 @@ var config = require('../config')
   , User = models.User
   , Project = models.Project
   , Build = models.Build
+  , Feedback = models.Feedback
+  , Download = models.Download
   ;
 
 
@@ -23,10 +25,14 @@ exports.handleUpload = function(req, res, next) {
     , build = new Build(req.body)
     , newPath = config.upload.dest + '/' + build.id
     , id = build.id
-    , project = req.project;
+    , project = req.project
+    , projectName;
 
   build.size = apkfile.size;
   build.filename = apkfile.name;
+
+  projectName = apkfile.name.split(/[-_\.]/);
+  delete projectName[projectName.length-1];
 
   if (build.project)
     Project.findById(build.project, function(err, doc){
@@ -37,6 +43,7 @@ exports.handleUpload = function(req, res, next) {
     })
   else {
     project = new Project()
+    project.name = projectName.join(' ')
     project.save(function(err){
       if (err) return next(err);
 
@@ -66,10 +73,13 @@ exports.handleUpload = function(req, res, next) {
 
 exports.loadProject = function(req, res, next) {
   var token = req.params.pid
+    , q
 
   if (!token) return next();
 
-  Project.findById(token, function(err, project){
+  q = Project.findById(token)
+
+  q.exec(function(err, project){
     if (err) return next();
 
     if (!project)
@@ -85,12 +95,15 @@ exports.loadProject = function(req, res, next) {
 
 exports.loadBuild = function(req, res, next) {
   var bid = req.params.bid;
+  var q = Build.findById(bid)
 
-  Build.findById(bid, function(err, build){
+  q.populate('downloads')
+
+  q.exec(function(err, build){
     if (err) return next(err);
 
+    req.build = build;
     res.local('build', build);
-    res.build = build;
     next();
   })
 }
@@ -100,7 +113,7 @@ exports.loadBuilds = function(req, res, next) {
   var project = req.project, q;
 
   q = Build.find({ project: project.id });
-  q.populate('voting')
+  q.populate('feedbacks')
   q.sort('createdAt', -1)
 
   q.exec(function(err, builds){
@@ -115,8 +128,34 @@ exports.loadBuilds = function(req, res, next) {
 }
 
 
-exports.projects = function(req, res) {
+exports.loadFeedbacks = function(req, res, next) {
+  var q = Feedback.find({ build: req.build.id});
 
+  q.populate('by')
+
+  q.exec(function(err, feedbacks){
+    if (err) return next(err);
+
+    req.feedbacks = feedbacks;
+    res.local('feedbacks', feedbacks);
+    next()
+  });
+}
+
+
+exports.projects = function(req, res) {
+  var q = Project.find();
+
+  q.populate('builds')
+
+  q.exec(function(err, projects){
+    if (err) return next(err);
+
+    res.render('projects/list', {
+        title: 'All projects'
+      , projects: projects
+    });
+  })
 }
 
 
@@ -133,15 +172,21 @@ exports.project = function(req, res) {
 
 
 exports.build = function(req, res) {
-
   res.render('builds/show', {
-      title: 'Show Build'
+      title: req.build.filename
   });
 }
 
 
-exports.download = function(req, res) {
+exports.download = function(req, res, next) {
+  var download = new Download()
+    , build = req.build
+    , buildPath = config.upload.dest + '/' + build._id;
 
+  download.build = build;
+  download.save(function(err){
+    if (err) return next(err);
 
-  res.send('Sending file.........never....');
+    res.download(buildPath, build.filename);
+  })
 }

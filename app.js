@@ -49,6 +49,7 @@ app.helpers({
 // Routes
 
 //app.get('/', routes.index);
+app.get('/projects', routes.projects);
 app.get(
     '/project/:pid'
   , routes.loadProject
@@ -59,13 +60,18 @@ app.get(
     '/project/:pid/:bid'
   , routes.loadProject
   , routes.loadBuild
+  , routes.loadFeedbacks
   , routes.build
 );
 app.get(
-    'project/:pid/:bid/download'
+    '/project/:pid/:bid/download'
+  , routes.loadProject
+  , routes.loadBuild
   , routes.download
 );
+
 //app.get('/dashboard', routes.dashboard);
+
 app.get('/upload/:pid', routes.loadProject, routes.upload);
 app.get('/upload', routes.upload);
 app.post('/upload', routes.handleUpload)

@@ -1,0 +1,15 @@
+<div class="container">
+
+    <% for (var i=0, len=projects.length, p; p=projects[i]; i++) { %>
+    <div class="row">
+      <h5>
+        <a href="/project/<%= p.id %>">
+          <%= p.name %>
+        </a>
+      </h5>
+      <hr/>
+    </div>
+    <% } %>
+    <!-- Builds row 1 -->
+
+</div>

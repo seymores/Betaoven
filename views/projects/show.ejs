@@ -76,23 +76,24 @@
               </strong>
             </p>
 
-            <% if (build.upVotes.length) { %>
+            <% if (build.numApproved) { %>
             <span class="green radius label">
-              <%= build.upVotes.length %> ppl approved
-            </span>
+              <%= build.numApproved %> ppl approved
+            </span>&nbsp;
             <% } %>
 
-            <% if (build.downVotes.length) { %>
-            <span class="green radius label">
-              <%= build.downVotes.length %> ppl disapproved
-            </span>
+            <% if (build.numDisapproved) { %>
+            <span class="red radius label">
+              <%= build.numDisapproved %> ppl disapproved
+            </span>&nbsp;
             <% } %>
 
-            <% if (builds.downloads) { %>
+            <% if (build.numDownloads) { %>
             <span class="white radius label">
-              <%= builds.downloads.length %> downloads
-            </span>
+              <%= build.numDownloads %> downloads
+            </span>&nbsp;
             <% } %>
+
             <hr/>
           </div>
       </div>

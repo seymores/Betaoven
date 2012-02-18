@@ -1,0 +1,149 @@
+<div class="container">
+
+  <div class="row show-on-phones">
+    <div class="twelve columns">
+      <h6 class="subheader"><a href="">beta_oven1.apk, version: 2.3</a></h6>
+      <a class="large red button radius" href="#">Download</a>
+      <p> 623kb Uploaded <strong>4 hours ago.</strong></p>
+      <br/>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <!-- Side bar -->
+    <div class="three columns">
+
+      <div class="row">
+        <div class="twelve columns hide-on-phones">
+          <!--
+          <img src="http://placehold.it/100x100">
+          -->
+          <h6 class="subheader">
+            <%= build.filename %><%= build.version_code ? ', version: '+build.version_code : '' %>
+          </h6>
+          <p>
+            <%= build.changelog %>
+          </p>
+
+          <p>
+            <%= build.prettySize %> Uploaded
+            <strong>
+              <%= build.prettyCreatedAt %>.
+            </strong>
+          </p>
+
+
+          <span class="green radius label">
+            <%= build.numApproved %> ppls approved
+          </span>
+          <br />
+          <span class="red radius label">
+            <%= build.numDisapproved %> ppls disapproved
+          </span>
+          <br />
+          <span class="black radius label">
+            <%= build.numNoFeedback %> no feedback
+          </span>
+          <br />
+          <span class="white radius label">
+            <%= build.numDownloads %> downloads
+          </span>
+
+          <!--
+          <hr/>
+          <p> Project admin @seymores </p>
+          <p><Strong>Project members</strong></p>
+          <ul>
+            <li>ping</li>
+            <li>tansu</li>
+            <li>sooyoung</li>
+            <li>Add member</li>
+          </ul>
+          -->
+
+        </div>
+      </div>
+
+    </div> <!-- /sidebar -->
+
+
+    <div class="nine columns"> <!-- main body -->
+
+      <% for (var i=0, len=feedbacks.length, f; f=feedbacks[i]; i++) { %>
+      <div class="row">
+        <div class="two columns build_icon_box hide-on-phones">
+          <% if (f.approved) { %>
+          <img src="/img/icon_green.png" width="77px" height="73px">
+          <% } else { %>
+          <img src="/img/icon_red.png" width="77px" height="73px">
+          <% } %>
+        </div>
+        <div class="ten columns">
+          <p><strong>
+            <%= f.details %>
+          </strong></p>
+          <p>
+            <span class="green radius label"><%= f.approved ? 'Approved' : 'Disapproved' %> <%= f.prettyModifiedAt %></span>
+            <%= f.deviceInfo %>
+
+            <a href="/profile/<%= f.by.id %>">@<%= f.by.display_name %></a>
+
+          </p>
+          <hr/>
+        </div>
+      </div>
+      <% } %>
+      <!-- Builds row 1 -->
+      <!--
+      <div class="row">
+        <div class="two columns build_icon_box hide-on-phones">
+          <img src="/img/icon_green.png" width="77px" height="73px">
+        </div>
+        <div class="ten columns">
+          <p><strong>Works on my phone so far -- no FB sharing crashes</strong></p>
+          <p><span class="green radius label">Approved 3 hours ago</span>
+          Android 2.3.6, HTC Desire, TC35466 <a href="/profile/sooyoung">@seymores</a></p>
+          <hr/>
+        </div>
+      </div>
+      -->
+
+      <!-- Builds row 2 -->
+      <!--
+      <div class="row">
+        <div class="two columns build_icon_box hide-on-phones">
+          <img src="/img/icon_red.png" width="77px" height="73px">
+        </div>
+        <div class="ten columns">
+          <p><strong>Not loading after login. App freezes and looks like it crashes</strong></p>
+
+          <p> <span class="red radius label">Disapproved 4 hours ago</span>
+          Android 2.2.6, Droid, XXU-90 <a href="/profile/sooyoung">@jeffrey</a> </p>
+          <hr/>
+        </div>
+      </div>
+      -->
+
+      <!-- Builds row 3 -->
+      <!--
+      <div class="row">
+        <div class="two columns build_icon_box hide-on-phones">
+          <img src="/img/icon_red.png" width="77px" height="73px">
+        </div>
+        <div class="ten columns">
+          <p><strong>Not loading after login. App freezes and looks like it crashes. Took a long time to load too. Please send new build asap.</strong> </p>
+
+          <p> <span class="red radius label">Disapproved 4 hours ago</span>
+          Android 2.2.6, Droid, XXU-90 <a href="/profile/sooyoung">@sooyoung</a> </p>
+          <hr/>
+        </div>
+      </div>
+      -->
+
+
+    </div> <!-- /main body -->
+  </div>
+
+</div>
+<!-- container -->
