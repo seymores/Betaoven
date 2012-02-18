@@ -12,13 +12,17 @@ module.exports = function(schema){
     next()
   })
 
-  schema.method('prettyCreatedAt', function() {
-    return prettyDate(+this.createdAt);
-  })
+  schema
+    .virtual('prettyCreatedAt')
+    .get(function() {
+      return prettyDate(+this.createdAt);
+    })
 
-  schema.method('prettyModifiedAt', function() {
-    return prettyDate(+this.modifiedAt);
-  })
+  schema
+    .virtual('prettyModifiedAt')
+    .get(function() {
+      return prettyDate(+this.modifiedAt);
+    })
 }
 
 /*
