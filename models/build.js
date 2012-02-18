@@ -23,6 +23,10 @@ var Build = new Schema({
         type: String
       , default: 'pending'
     }
+  , changelog: {
+      type: String
+    , trim: true
+  }
   , voting: [{
         type: ObjectId
       , ref: 'Voting'
