@@ -33,10 +33,6 @@ var Build = new Schema({
       type: String
     , trim: true
   }
-  , voting: [{
-        type: ObjectId
-      , ref: 'Voting'
-    }]
   , feedbacks: [{
         type: ObjectId
       , ref: 'Feedback'
@@ -51,7 +47,7 @@ var Build = new Schema({
 Build
   .virtual('upVotes')
   .get(function() {
-    var votings = this.voting;
+    var votings = this.feedbacks;
     var up = [];
 
     votings.forEach(function(v){
@@ -66,7 +62,7 @@ Build
 Build
   .virtual('downVotes')
   .get(function() {
-    var votings = this.voting;
+    var votings = this.feedbacks;
     var down = [];
 
     votings.forEach(function(v){
