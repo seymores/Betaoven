@@ -11,7 +11,9 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title><%= title %></title>
+  <title><%= title %> - <%= site.name %></title>
+
+  <link rel="shortcut icon" href="/favicon.png" />
 
   <!-- Included CSS Files -->
   <link rel="stylesheet" href="/css/foundation.css">
@@ -41,8 +43,8 @@
     <div class="container">
       <div class="row">
         <div class="twelve columns">
-          <h2><%= title %></h2>
-          <h5 class="subheader"><%= description %></h5>
+          <h2><%= site.name %></h2>
+          <h5 class="subheader"><%= site.desc %></h5>
           <div class="project_line"></div>
         </div>
       </div>
@@ -53,9 +55,8 @@
   <%- body %>
 
 
-
   <footer class="row">
-      <hr />
+    <hr />
   </footer>
 
   <!-- Included JS Files -->
