@@ -24,6 +24,10 @@ var Project = new Schema({
       type: ObjectId
     , ref: 'User'
   }]
+  , collaborators: [{
+      type: ObjectId
+    , ref: 'User'
+  }]
   , builds: [{
       type: ObjectId
     , ref: 'Build'
@@ -57,6 +61,8 @@ Project
       next = options;
       options = {};
     }
+
+    q.populate('builds')
 
     options.filter && Object.keys(options.filter)
       .forEach(function(key){
