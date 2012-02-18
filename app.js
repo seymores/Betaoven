@@ -4,9 +4,10 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , routes = require('./routes/prototype')
   , middlewares = require('./middlewares')
   , config = require('./config')
+  , ejs = require('ejs')
   ;
 
 var app = module.exports = express.createServer();
@@ -15,7 +16,8 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 
@@ -36,12 +38,39 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+
+app.helpers({
+    site: {
+        name: 'AndroidRocket'
+      , desc: 'Deploy & Distribute Immediately'
+    }
+});
+
 // Routes
 
-app.get('/', routes.index);
-app.get('/project', routes.project);
-app.get('/dashboard', routes.dashboard);
-app.post('/upload', routes.upload);
+//app.get('/', routes.index);
+app.get(
+    '/project/:pid'
+  , routes.loadProject
+  , routes.loadBuilds
+  , routes.project
+);
+app.get(
+    '/project/:pid/:bid'
+  , routes.loadProject
+  , routes.loadBuild
+  , routes.build
+);
+app.get(
+    'project/:pid/:bid/download'
+  , routes.download
+);
+//app.get('/dashboard', routes.dashboard);
+app.get('/upload/:pid', routes.loadProject, routes.upload);
+app.get('/upload', routes.upload);
+app.post('/upload', routes.handleUpload)
+
+
 
 
 !module.parent
