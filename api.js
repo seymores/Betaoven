@@ -36,6 +36,7 @@ api.get('/project/:pid/build/:bid', builds.get)
 
 api.get('/project/:pid/build/:bid/feedbacks', feedbacks.list)
 api.post('/project/:pid/build/:bid/feedbacks', feedbacks.create)
+api.post('/project/:pid/build/:bid/feedback/:fid', feedbacks.update);
 
 !module.parent
   && api.listen(config.site.port)
