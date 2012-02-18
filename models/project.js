@@ -10,6 +10,7 @@ var Project = new Schema({
       type: String
     //, required: true
     , trim: true
+    , default: 'untitled'
   }
   , description: {
       type: String
