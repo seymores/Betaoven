@@ -8,7 +8,7 @@ const db = require('../db')
 var Project = new Schema({
     name: {
       type: String
-    , required: true
+    //, required: true
     , trim: true
   }
   , description: {
@@ -18,7 +18,7 @@ var Project = new Schema({
   , owner: {
       type: ObjectId
     , ref: 'User'
-    , required: true
+    //, required: true
   }
   , admins: [{
       type: ObjectId
