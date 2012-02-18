@@ -33,7 +33,18 @@ var Feedback = new Schema({
       , required: true
       , trim: true
     }
+  , deviceInfo: {
+        type: String
+      , default: ''
+    }
 });
+
+
+Feedback
+  .virtual('approved')
+  .get(function() {
+    return this.point > 0;
+  })
 
 
 /**
