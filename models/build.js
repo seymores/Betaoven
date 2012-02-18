@@ -11,6 +11,8 @@ var Build = new Schema({
       , ref: 'Project'
       , required: true
     }
+  , filename: String
+  , size: Number
   , version_code: {
         type: String
       , trim: true
@@ -35,11 +37,15 @@ var Build = new Schema({
         type: ObjectId
       , ref: 'Feedback'
     }]
+  , downloads: [{
+        type: ObjectId
+      , ref: 'Download'
+    }]
 });
 
 
 Build
-  .virtual('voting.up')
+  .virtual('upVotes')
   .get(function() {
     var votings = this.voting;
     var up = [];
@@ -54,7 +60,7 @@ Build
 
 
 Build
-  .virtual('voting.down')
+  .virtual('downVotes')
   .get(function() {
     var votings = this.voting;
     var down = [];
