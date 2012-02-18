@@ -10,6 +10,7 @@ const restify = require('restify')
 const users = require('./routes/api/users')
     , projects = require('./routes/api/projects')
     , builds = require('./routes/api/builds')
+    , feedbacks = require('./routes/api/feedbacks')
     ;
 
 
@@ -32,6 +33,9 @@ api.get('/project/:pid/invite', projects.invite)
 api.get('/project/:pid/builds', builds.list)
 api.post('/project/:pid/builds', builds.create)
 api.get('/project/:pid/build/:bid', builds.get)
+
+api.get('/project/:pid/build/:bid/feedbacks', feedbacks.list)
+api.post('/project/:pid/build/:bid/feedbacks', feedbacks.create)
 
 !module.parent
   && api.listen(config.site.port)
