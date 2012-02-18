@@ -12,7 +12,10 @@ var Build = new Schema({
       , required: true
     }
   , filename: String
-  , size: Number
+  , size: {
+        type: Number
+      , default: 0
+    }
   , version_code: {
         type: String
       , trim: true
@@ -25,6 +28,7 @@ var Build = new Schema({
         type: String
       , default: 'pending'
     }
+  , actions: [ObjectId]
   , changelog: {
       type: String
     , trim: true
@@ -71,6 +75,28 @@ Build
     })
 
     return down;
+  })
+
+
+var sizes = {
+    b: 1
+  , kb: 1024
+  , mb: 1024000
+  , gb: 1024000000
+}
+Build
+  .virtual('prettySize')
+  .get(function() {
+    var size = this.size
+      , unit = this.size > 1024000000
+        ? 'gb'
+        : this.size > 1024000
+        ? 'mb'
+        : this.size > 1024
+        ? 'kb'
+        : 'b';
+  
+    return Math.round(size / sizes[unit]) + (size % sizes[unit]) + unit;
   })
 
 
