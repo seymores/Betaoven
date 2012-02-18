@@ -7,4 +7,5 @@ module.exports = {
   , Token: require('./token')
   , Project: require('./project')
   , Feedback: require('./feedback')
+  , Download: require('./download')
 }
