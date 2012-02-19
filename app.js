@@ -8,6 +8,7 @@ var express = require('express')
   , middlewares = require('./middlewares')
   , config = require('./config')
   , ejs = require('ejs')
+  , RedisStore = require('connect-redis')(express)
   ;
 
 var app = module.exports = express.createServer();
@@ -22,9 +23,11 @@ app.configure(function(){
   app.use(express.methodOverride());
 
   app.use(express.cookieParser());
-  app.use(express.session({ secret: config.session.secret }))
+  app.use(express.session({ secret: config.session.secret, store: new RedisStore }))
 
   app.use(middlewares.mobileDetector());
+
+  app.use(routes.auth)
 
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -48,13 +51,43 @@ app.helpers({
 
 // Routes
 
-//app.get('/', routes.index);
+app.get('/', routes.dashboard);
+app.redirect('home', '/');
+app.get(
+    '/login'
+  , routes.goHomeIfAuthenticated
+  , routes.login)
+app.post(
+    '/login'
+  , routes.goHomeIfAuthenticated
+  , routes.processLogin)
+app.get(
+    '/register'
+  , routes.goHomeIfAuthenticated
+  , routes.register)
+app.post(
+    '/register'
+  , routes.goHomeIfAuthenticated
+  , routes.processRegister)
+app.get('/logout', routes.logout)
+
 app.get('/projects', routes.projects);
+app.redirect('dashboard', '/projects');
 app.get(
     '/project/:pid'
   , routes.loadProject
   , routes.loadBuilds
   , routes.project
+);
+app.get(
+    '/project/:pid/edit'
+  , routes.loadProject
+  , routes.projectEdit
+);
+app.post(
+    '/project/:pid'
+  , routes.loadProject
+  , routes.processProjectEdit
 );
 app.get(
     '/project/:pid/:bid'

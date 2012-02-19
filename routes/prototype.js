@@ -7,6 +7,7 @@ var config = require('../config')
   , Build = models.Build
   , Feedback = models.Feedback
   , Download = models.Download
+  , Token = models.Token
   ;
 
 
@@ -44,6 +45,7 @@ exports.handleUpload = function(req, res, next) {
   else {
     project = new Project()
     project.name = projectName.join(' ')
+    project.owner = req.user.id;
     project.save(function(err){
       if (err) return next(err);
 
@@ -171,6 +173,19 @@ exports.project = function(req, res) {
 }
 
 
+exports.projectEdit = function(req, res) {
+  
+  res.render('projects/edit', {
+      title: 'Edit project'
+  });
+}
+
+
+exports.processProjectEdit = function(req, res) {
+  
+}
+
+
 exports.build = function(req, res) {
   res.render('builds/show', {
       title: req.build.filename
@@ -189,4 +204,122 @@ exports.download = function(req, res, next) {
 
     res.download(buildPath, build.filename);
   })
+}
+
+
+exports.login = function(req, res) {
+  res.render('users/login', {
+      title: 'Login'
+  });
+}
+
+
+exports.processLogin = function(req, res, next) {
+  var token;
+
+  User.auth(req.body, function(err, user){
+    if (err) return next()
+
+    if (!user) {
+      // handle this later...
+      next(Error('We don&rsquo;t validate at the moment...'))
+    } else {
+      token = new Token({ email: user.email })
+      token.save(function(err){
+        if (err) return next(err);
+
+        req.session.token = token.token;
+        res.redirect('dashboard');
+      })
+    }
+  })
+}
+
+
+exports.register = function(req, res) {
+  res.render('users/register', {
+      title: 'Register'
+  });
+}
+
+
+exports.processRegister = function(req, res) {
+  var user = new User(req.body)
+    , token;
+
+  user.save(function(err){
+    if (err) return next(err);
+
+    token = new Token({ email: user.email })
+    token.save(function(err){
+      if (err) return next(err)
+
+      req.session.token = token.token;
+      res.redirect('dashboard')
+    })
+  })
+}
+
+
+exports.dashboard = function(req, res) {
+  res.render('users/dashboard', {
+      title: 'Dashboard'
+  });
+}
+
+exports.logout = function(req, res, next) {
+  if (!req.session.token)
+    return res.redirect('home');
+
+  var q = Token.findOne({ token: req.session.token })
+
+  q.exec(function(err, token){
+    if (err) return next(err)
+
+    token.remove(function(err){
+      if (err) return next(err)
+
+      delete req.session.token;
+      res.redirect('/login');
+    })
+  })
+}
+
+exports.goHomeIfAuthenticated = function(req, res, next) {
+  if (req.session.token)
+    return res.redirect('dashboard')
+
+  next()
+}
+
+
+exports.auth = function(req, res, next) {
+  var token = req.session.token;
+
+  if (!token) {
+    req.authenticated = false;
+    req.authToken = null;
+    req.user = null;
+
+    next()
+  } else
+    Token.findByToken(token, function(err, token){
+      if (err) return next(err)
+
+      if (!token) return next();
+
+      req.authenticated = token && token.token ? true : false;
+      req.authToken = token.token;
+
+      User.findByEmail(token.email, function(err, user){
+        if (err)
+          next(err)
+        else {
+          if (!user) return next();
+
+          req.user = user
+          next()
+        }
+      })
+    })
 }

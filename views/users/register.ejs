@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="six columns">
+
+    <h4><%= title %></h4>
+    <p>
+      Give us some info about you so that we can recognize you,<br />
+      then you're good to go!
+    </p>
+
+      <form class="nice" action="/register" method="post">
+        <label>E-mail</label>
+        <input name="email" type="email" class="input-text"/>
+
+        <label>Password</label>
+        <input name="password" type="password" class="input-text" />
+
+        <label for="">Display Name</label>
+        <input name="display_name" type="text" class="input-text" />
+
+        <input type="submit" value="Continue" class="input-submit nice radius small blue button" />
+        or <a href="/">Back to home</a>
+
+      </form>
+    </div>
+
+
+    <div class="six columns">
+      <div class="panel hide-on-phones">
+        <h4>Login to your account</h4>
+        <p> AndroidRocket is build for simple and straightforward deployment and distribution platform for Android.</p>
+        <p>
+        <a class="nice radius blue button mobile src-download" href="/login">Login Here</a>
+        </p>
+      </div>
+    </div>
+
+  </div> <!-- /row -->
+</div> <!-- /container -->
