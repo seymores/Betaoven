@@ -1,6 +1,5 @@
-<p></p>
-<div class="container">
 
+<div class="container">
 
   <div class="row">
     <!-- Side bar -->
@@ -8,16 +7,19 @@
       <div class="row build">
         <div class="twelve columns hide-on-phones">
 
-
           <h4><%= title %></h4>
+          <br />
+
+          <!--
           <h5 class="subheader"><%= description %></h5>
+          -->
 
           <p>
             <a href="/upload/<%= project.id %>" class="large blue button radius">
               Upload Build
             </a>
           </p>
-
+<!--
           <hr/>
 
           <h4>Project members</h4>
@@ -28,7 +30,7 @@
           </ul>
 
           <br />
-
+-->
           <ul>
             <li><a href="/project/<%= project.id %>/members/add">
               Add member
@@ -70,7 +72,7 @@
             </a>
           </h5>
           <p>
-            <%= build.changelog %>
+            <%- build.changelog.replace(/\r\n/gi, '<br />') %>
           </p>
 
           <p>
