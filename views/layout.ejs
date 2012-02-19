@@ -38,26 +38,14 @@
 </head>
 <body>
 
-  <!-- header container -->
-  <section class="header">
-    <div class="container">
-      <div class="row">
-        <div class="twelve columns">
-          <h2><%= site.name %></h2>
-          <h5 class="subheader"><%= site.desc %></h5>
-          <div class="project_line"></div>
-        </div>
-      </div>
-    </div> <!-- /header container -->
-  </section>
-
+  <header class="banner container">
+    <div class="row">
+      <h1><%= site.name %></h1>
+      <h2><%= site.desc %></h2>
+    </div>
+  </header>
 
   <%- body %>
-
-
-  <footer class="row">
-    <hr />
-  </footer>
 
   <!-- Included JS Files -->
   <script src="/js/jquery.min.js"></script>
