@@ -14,8 +14,8 @@ var User = new Schema({
     }
   , username: {
       type: String
-    , required: true
     , trim: true
+    , default: ''
   }
   , display_name: {
       type: String
