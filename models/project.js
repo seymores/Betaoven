@@ -8,6 +8,7 @@ const db = require('../db')
 var Project = new Schema({
     name: {
       type: String
+    // TODO: Make name as required
     //, required: true
     , trim: true
     , default: 'untitled'
@@ -19,6 +20,7 @@ var Project = new Schema({
   , owner: {
       type: ObjectId
     , ref: 'User'
+    // TODO: Make owner as required
     //, required: true
   }
   , admins: [{
