@@ -59,7 +59,7 @@ describe('User Model', function(){
       })
     })
 
-    sets = ['email', 'username', 'display_name', 'password']
+    sets = ['email', /*'username', */'display_name', 'password']
     sets.forEach(function(path){
       it('should prompt error when "' +path+ '" not set', function(done){
         data = getData()

@@ -15,6 +15,7 @@ var User = new Schema({
   , username: {
       type: String
     , trim: true
+    // TODO: Make username as required
     , default: ''
   }
   , display_name: {
