@@ -15,12 +15,6 @@ var user
       }
     }
 
-  , feedback
-    = exports.feedback
-    = function(){
-      return { by: new User(user()), details: 'meow~' }
-    }
-
   , project
     = exports.project
     = function(){
@@ -52,9 +46,29 @@ var user
         , path: 'path/to/build/file'
       }
     }
+
+  , feedback
+    = exports.feedback
+    = function(){
+      return {
+          by: new User(user())
+        , project: new Project(project())
+        , build: new Build(build())
+        , details: 'meow~'
+        , deviceInfo: 'Android 2.3.5, etc, etc'
+      }
+    }
     
   , vote
     = exports.vote
+    = function(){
+      return {
+          by: new User(user())
+        , build: new Build(build())
+      }
+    }
+  , download
+    = exports.download
     = function(){
       return {
           by: new User(user())
