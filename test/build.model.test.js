@@ -6,10 +6,25 @@ const Build = require('../models/build')
 
 
 describe('Build Model', function(){
+  describe('.filename', function(){
+    after(function(done){
+      Build.remove(done);
+    })
+
+    it('should default to "untitled.apk"', function(){
+      var data = getData()
+        , build;
+
+      delete data.filename;
+      build = new Build(data);
+      build.filename.should.be.eql('untitled.apk');
+    })
+  })
+
   describe('#save', function(){
     var build, sets;
 
-    beforeEach(function(done){
+    afterEach(function(done){
       Build.remove(done)
     })
 

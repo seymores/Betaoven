@@ -11,7 +11,10 @@ var Build = new Schema({
       , ref: 'Project'
       , required: true
     }
-  , filename: String
+  , filename: {
+        type: String
+      , default: 'untitled.apk'
+    }
   , size: {
         type: Number
       , default: 0
@@ -41,66 +44,6 @@ var Build = new Schema({
       , ref: 'Download'
     }]
 });
-
-
-Build
-  .virtual('disapproved')
-  .get(function() {
-    var feedbacks = this.feedbacks;
-    var up = [];
-
-    feedbacks.forEach(function(f){
-      if (f.point < 0)
-        up[up.length] = f;
-    })
-
-    return up;
-  })
-
-
-Build
-  .virtual('approved')
-  .get(function() {
-    var feedbacks = this.feedbacks;
-    var down = [];
-
-    feedbacks.forEach(function(f){
-      if (f.point > 0)
-        down[down.length] = f;
-    })
-
-    return down;
-  })
-
-
-Build
-  .virtual('numDisapproved')
-  .get(function() {
-    return this.disapproved.length || 0;
-  })
-
-
-Build
-  .virtual('numApproved')
-  .get(function() {
-    return this.approved.length || 0;
-  })
-
-
-Build
-  .virtual('numDownloads')
-  .get(function() {
-    return this.downloads.length || 0;
-  })
-
-
-Build
-  .virtual('numNoFeedback')
-  .get(function() {
-    var nd = this.downloads.length || 0
-      , nf = this.feedbacks.length || 0
-    return nd - nf;
-  })
 
 
 var sizes = {
