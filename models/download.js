@@ -6,8 +6,16 @@ const db = require('../db')
 
 
 var Download = new Schema({
-    build: { type: ObjectId, ref: 'Build' }
-  , by: { type: ObjectId, ref: 'User' }
+    build: {
+        type: ObjectId
+      , ref: 'Build'
+      , required: true
+    }
+  , by: {
+        type: ObjectId
+      , ref: 'User'
+      , required: true
+    }
 });
 
 
