@@ -47,6 +47,29 @@ Feedback
   })
 
 
+Feedback
+  .statics
+  .listApproved = function(buildId, next) {
+    return listApprovedDisapproved(1, buildId, next);
+  }
+
+
+Feedback
+  .statics
+  .listDisapproved = function(buildId, next) {
+    return listApprovedDisapproved(-1, buildId, next);
+  }
+
+
+function listApprovedDisapproved(point, buildId, next){
+  var q = Model.find({ build: buildId, point: point })
+
+  next && q.exec(next)
+
+  return q;
+}
+
+
 /**
  * Plugins
  */
